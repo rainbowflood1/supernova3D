@@ -3,8 +3,8 @@
 
 Game game(800, 600, "Game");
 
-void update(float dt) {
-	std::cout << "Hello world!" << std::endl;
+void update(double dt) {
+	std::cout << dt << std::endl;
 }
 
 int main() {

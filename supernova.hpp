@@ -38,14 +38,22 @@ public:
 		gladLoadGL(glfwGetProcAddress);
 	}
 
-	void Update(std::function<void(float)> update_function) {
+	void Update(std::function<void(double)> update_function) {
+		double last_time = 0.0;
+		double dt = 0.0;
+
 		while (!glfwWindowShouldClose(this->window)) {
+			dt = glfwGetTime()-last_time;
 			glfwPollEvents();
 			glViewport(0, 0, this->WindowWidth, this->WindowHeight);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 			glClearColor(0, 0.1, 1, 1);
-			update_function(0.01);
+			update_function(dt);
+
+			
+			
 			glfwSwapBuffers(this->window);
+			last_time = glfwGetTime();
 		}
 	}
 
