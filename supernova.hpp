@@ -2,16 +2,54 @@
 #define SUPERNOVA
 
 
+#include <string>
+#include <functional>
+
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 
 
-
 class Game {
 public:
-	Game() { // Initalize GLFW and create window
+	// Window
+	int WindowWidth;
+	int WindowHeight;
+	std::string WindowName;
+	Game(int WindowWidth, int WindowHeight, std::string WindowName) {
+		this->WindowWidth = WindowWidth;
+		this->WindowHeight = WindowHeight;
+		this->WindowName = WindowName;
+		// Initalize GLFW
+		glfwInit();
+
+		// Tell GLFW what version of OpenGL we are using (4.6)
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		
+		this->window = glfwCreateWindow(this->WindowWidth, this->WindowHeight, this->WindowName.c_str(), nullptr, nullptr);
+
+		glfwMakeContextCurrent(window);
+
+
+
 	}
+
+	void Update(std::function<void(float)> update_function) {
+		while (!glfwWindowShouldClose(this->window)) {
+			glfwPollEvents();
+			update_function(0.01);
+			glfwSwapBuffers(this->window);
+		}
+	}
+
+	~Game() {
+		glfwDestroyWindow(this->window);
+		glfwTerminate();
+
+	}
+private:
+	GLFWwindow* window;
 };
 
 
