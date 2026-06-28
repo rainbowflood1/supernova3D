@@ -2,4 +2,3 @@ gl.c
 run.sh
 game
 glad/
-examples/game.cpp
