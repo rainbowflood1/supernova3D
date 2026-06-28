@@ -29,15 +29,21 @@ public:
 		
 		this->window = glfwCreateWindow(this->WindowWidth, this->WindowHeight, this->WindowName.c_str(), nullptr, nullptr);
 
+		if (!this->window) {
+			std::cerr << "ERROR! WINDOW CREATION FAILED!";
+		}
+
 		glfwMakeContextCurrent(window);
 
-
-
+		gladLoadGL(glfwGetProcAddress);
 	}
 
 	void Update(std::function<void(float)> update_function) {
 		while (!glfwWindowShouldClose(this->window)) {
 			glfwPollEvents();
+			glViewport(0, 0, this->WindowWidth, this->WindowHeight);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+			glClearColor(0, 0.1, 1, 1);
 			update_function(0.01);
 			glfwSwapBuffers(this->window);
 		}
