@@ -93,7 +93,7 @@ public:
 	float b = 0.0;
 	float a = 0.0;
 
-	Color(float r = 0.0, float g = 0.0, float b = 0.0) {
+	Color(float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 0.0f) {
 		this->r = r;
 		this->g = g;
 		this->b = b;
