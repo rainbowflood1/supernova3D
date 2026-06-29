@@ -86,6 +86,21 @@ public:
 	
 };
 
+class Color {
+public:
+	float r = 0.0;
+	float g = 0.0;
+	float b = 0.0;
+	float a = 0.0;
+
+	Color(float r = 0.0, float g = 0.0, float b = 0.0) {
+		this->r = r;
+		this->g = g;
+		this->b = b;
+		this->a = a;
+	}
+};
+
 class Vector3 {
 public:
 	GLfloat x;
