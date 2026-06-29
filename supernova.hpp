@@ -23,9 +23,9 @@ public:
 	GLuint program;
 
 	void CreateShaders() {
+		// Because it is an std::string, it will be converted to a const char* by using std::string::c_str()
 		const char* vertex_shader_const_char = this->vertex_shader_source.c_str();
 		const char* fragment_shader_const_char = this->fragment_shader_source.c_str();
-		// Because it is an std::string, it will be converted to a const char* by using std::string::c_str()
 		
 		// Create Shaders
 		this->vshader = glCreateShader(GL_VERTEX_SHADER);
@@ -119,9 +119,6 @@ public:
 	std::vector<Vector3> Verts;
 	std::vector<int> Ind;
 	void Init() {
-		//GLfloat* points = this->VecToFloat().data();
-		//int* indices = this->Ind.data();
-
 		size_t points_size = this->Verts.size()*sizeof(Vector3);	
 
 		GLfloat points[points_size];
