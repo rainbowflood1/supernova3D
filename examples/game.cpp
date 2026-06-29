@@ -18,6 +18,8 @@ int main() {
 	game.Update(&update);
 	
 	shader.UnloadShaders();
+
+	game.Terminate();
 	std::cout << shader.vertex_shader_source << std::endl;
 	return 0;
 }

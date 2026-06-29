@@ -105,7 +105,7 @@ public:
 		}
 	}
 
-	~Game() {
+	void Terminate() {
 		glfwDestroyWindow(this->window);
 		glfwTerminate();
 
