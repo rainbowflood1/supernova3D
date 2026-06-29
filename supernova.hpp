@@ -185,6 +185,8 @@ public:
 	int WindowWidth;
 	int WindowHeight;
 	std::string WindowName;
+	// Render
+	Color SkyColor = Color();
 
 	Game(int WindowWidth, int WindowHeight, std::string WindowName) {
 		this->WindowWidth = WindowWidth;
@@ -217,7 +219,7 @@ public:
 
 		while (!glfwWindowShouldClose(this->window)) {
 			dt = glfwGetTime()-last_time;
-			glClearColor(0, 0.1, 1, 1);
+			glClearColor(this->SkyColor.r, this->SkyColor.g, this->SkyColor.b, this->SkyColor.a);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 			update_function(dt);
